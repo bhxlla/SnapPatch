@@ -5,8 +5,17 @@
 import SwiftUI
 
 struct CollageMainView: View {
+    
+    let initSize: CGFloat = 360
+    
+    let type: CollageType = .column([.data(.systemTeal, 1), .data(.systemPink, 2)], 1)
+    
     var body: some View {
-        Text("Hello, World!")
+        GeometryReader { proxy in
+            CollageView(size: proxy.size, type: type)
+        }
+        .frame(width: initSize, height: initSize)
+        .cornerRadius(12)
     }
 }
 
