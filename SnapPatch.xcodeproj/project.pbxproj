@@ -18,6 +18,7 @@
 		D5BD152B29F3E1DF003F52D8 /* CollageType.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BD152A29F3E1DF003F52D8 /* CollageType.swift */; };
 		D5BD152D29F3E4F1003F52D8 /* CollageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BD152C29F3E4F1003F52D8 /* CollageView.swift */; };
 		D5BD153029F3E72C003F52D8 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BD152F29F3E72C003F52D8 /* Size.swift */; };
+		D5BD153229F3EA53003F52D8 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BD153129F3EA53003F52D8 /* Modifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -52,6 +53,7 @@
 		D5BD152A29F3E1DF003F52D8 /* CollageType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageType.swift; sourceTree = "<group>"; };
 		D5BD152C29F3E4F1003F52D8 /* CollageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageView.swift; sourceTree = "<group>"; };
 		D5BD152F29F3E72C003F52D8 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
+		D5BD153129F3EA53003F52D8 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -159,6 +161,7 @@
 			isa = PBXGroup;
 			children = (
 				D5BD152F29F3E72C003F52D8 /* Size.swift */,
+				D5BD153129F3EA53003F52D8 /* Modifier.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -299,6 +302,7 @@
 				D5BD152D29F3E4F1003F52D8 /* CollageView.swift in Sources */,
 				D5BD153029F3E72C003F52D8 /* Size.swift in Sources */,
 				D5BD152929F3E0DA003F52D8 /* CollageMainView.swift in Sources */,
+				D5BD153229F3EA53003F52D8 /* Modifier.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
