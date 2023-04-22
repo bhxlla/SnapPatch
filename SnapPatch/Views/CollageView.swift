@@ -11,7 +11,9 @@ struct CollageView: View {
     var type: CollageType
     
     var body: some View {
-        Text("C")
+        Rectangle()
+            .fill(.green)
+            .frame(width: size.width, height: size.height)
     }
 }
 

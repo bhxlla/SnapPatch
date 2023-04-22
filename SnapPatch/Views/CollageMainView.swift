@@ -12,10 +12,15 @@ struct CollageMainView: View {
     
     var body: some View {
         GeometryReader { proxy in
-            CollageView(size: proxy.size, type: type)
+            VStack {
+                Spacer()
+                CollageView(size: proxy.size.toSquareSize, type: type)
+                    .cornerRadius(12)
+                Spacer()
+            }
         }
-        .frame(width: initSize, height: initSize)
-        .cornerRadius(12)
+        .padding()
+        .padding()        
     }
 }
 
