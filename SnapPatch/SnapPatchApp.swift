@@ -8,7 +8,7 @@ import SwiftUI
 struct SnapPatchApp: App {
     var body: some Scene {
         WindowGroup {
-            ContentView()
+            CollageScreen()
         }
     }
 }
