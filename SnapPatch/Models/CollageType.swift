@@ -99,4 +99,50 @@ extension CollageType {
         }
     }
     
+    var stringy: String {
+        switch self {
+        case .row(_, _): return "Row"
+        case .column(_, _): return "Column"
+        case .data(_, _): return "Data"
+        }
+    }
+    
+}
+
+
+extension CollageType {
+    
+    static let collages: [CollageType] = [
+    
+        .column([.data(.systemIndigo, 1), .data(.systemGreen, 1)], 1),
+        .row([.data(.systemPink, 1), .data(.systemTeal, 1)], 1),
+    
+        .row([
+            .column([ .data(.systemOrange, 1), .data(.systemGray2, 1) ], 1),
+            .data(.systemBrown, 1)
+        ], 1),
+    
+        .row([
+            .data(.systemYellow, 1),
+            .column([ .data(.systemGreen, 1), .data(.systemIndigo, 1) ], 1),
+        ], 1),
+    
+        .column([
+            .row([
+                .data(.systemRed, 1),
+                .data(.systemTeal, 1)
+            ], 1),
+            .data(.systemGreen, 1)
+        ], 1),
+    
+        .column([
+            .data(.systemPurple, 1),
+            .row([
+                .data(.systemMint, 1),
+                .data(.systemRed, 1)
+            ], 1),
+        ], 1),
+        
+    ]
+    
 }
