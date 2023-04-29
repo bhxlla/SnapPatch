@@ -10,6 +10,8 @@ struct CollageView: View {
     var size: CGSize
     var type: CollageType
     
+    var isMini = false
+    
     var dividerCount: Int {
         type.content.count - 1
     }
@@ -20,11 +22,17 @@ struct CollageView: View {
     
     @State var factors: [CGFloat]
     
-    init(size: CGSize, type: CollageType) {
+    init(size: CGSize, type: CollageType, isMini: Bool = false) {
         self.size = size
         self.type = type
-        
+        self.isMini = isMini
         _factors = State(initialValue: type.factorsArray)
+    }
+ 
+    func getSize(with fraction: CGFloat) -> CGSize {
+        type.isRow ?
+            CGSize.init(width: size.width, height: size.height * fraction) :
+            CGSize.init(width: size.width * fraction, height: size.height)
     }
     
     var body: some View {
@@ -38,11 +46,9 @@ struct CollageView: View {
                         let index = typ.offset
                         let num = index == 0 ? factors[0] : factors[index] - factors[index - 1]
                         let fraction = CGFloat(num) / CGFloat(denom)
-                        let size = type.isRow ?
-                                    CGSize.init(width: size.width, height: size.height * fraction) :
-                                    CGSize.init(width: size.width * fraction, height: size.height)
+                        let size = getSize(with: fraction)
                         
-                        CollageView(size: size, type: typ.element)
+                        CollageView(size: size, type: typ.element, isMini: isMini)
                     }
                     
                 }.frame(width: size.width, height: size.height)
@@ -50,7 +56,7 @@ struct CollageView: View {
                     VStack(spacing: 0) {
                         ForEach(0..<(factors.count - 1)) { index in
                             Rectangle()
-                                .frame(height: 4)
+                                .frame(height: isMini ? 1 : 4)
                                 .offset(y: -size.height / 2)
                                 .offset(y: size.height * (factors[index] / denom) )
                                 .gesture(
@@ -72,11 +78,9 @@ struct CollageView: View {
                         let index = typ.offset
                         let num = index == 0 ? factors[0] : factors[index] - factors[index - 1]
                         let fraction = CGFloat(num) / CGFloat(denom)
-                        let size = type.isRow ?
-                                    CGSize.init(width: size.width, height: size.height * fraction) :
-                                    CGSize.init(width: size.width * fraction, height: size.height)
+                        let size = getSize(with: fraction)
                         
-                        CollageView(size: size, type: typ.element)
+                        CollageView(size: size, type: typ.element, isMini: isMini)
                     }
                     
                 }.frame(width: size.width, height: size.height)
@@ -84,7 +88,7 @@ struct CollageView: View {
                     HStack(spacing: 0) {
                         ForEach(0..<(factors.count - 1)) { index in
                             Rectangle()
-                                .frame(width: 4)
+                                .frame(width: isMini ? 1 : 4)
                                 .offset(x: -size.width / 2)
                                 .offset(x: size.width * (factors[index] / denom) )
                                 .gesture(

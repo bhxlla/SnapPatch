@@ -20,6 +20,7 @@
 		D5BD153029F3E72C003F52D8 /* Size.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BD152F29F3E72C003F52D8 /* Size.swift */; };
 		D5BD153229F3EA53003F52D8 /* Modifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BD153129F3EA53003F52D8 /* Modifier.swift */; };
 		D5BD153529F3F61A003F52D8 /* CollageSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BD153429F3F61A003F52D8 /* CollageSelectorViewModel.swift */; };
+		D5BD153729F3F9CA003F52D8 /* CollageListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BD153629F3F9CA003F52D8 /* CollageListView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -56,6 +57,7 @@
 		D5BD152F29F3E72C003F52D8 /* Size.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Size.swift; sourceTree = "<group>"; };
 		D5BD153129F3EA53003F52D8 /* Modifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Modifier.swift; sourceTree = "<group>"; };
 		D5BD153429F3F61A003F52D8 /* CollageSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageSelectorViewModel.swift; sourceTree = "<group>"; };
+		D5BD153629F3F9CA003F52D8 /* CollageListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageListView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -156,6 +158,7 @@
 				D5BD152629F3E076003F52D8 /* CollageScreen.swift */,
 				D5BD152829F3E0DA003F52D8 /* CollageMainView.swift */,
 				D5BD152C29F3E4F1003F52D8 /* CollageView.swift */,
+				D5BD153629F3F9CA003F52D8 /* CollageListView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -315,6 +318,7 @@
 				D5BD153529F3F61A003F52D8 /* CollageSelectorViewModel.swift in Sources */,
 				D5BD152929F3E0DA003F52D8 /* CollageMainView.swift in Sources */,
 				D5BD153229F3EA53003F52D8 /* Modifier.swift in Sources */,
+				D5BD153729F3F9CA003F52D8 /* CollageListView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
