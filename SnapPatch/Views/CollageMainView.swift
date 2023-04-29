@@ -6,24 +6,16 @@ import SwiftUI
 
 struct CollageMainView: View {
     
-    let initSize: CGFloat = 360
-    
-    let type: CollageType = .row(
-        [
-            .data(.systemTeal, 1),
-            .column([
-                .data(.systemPink, 1),
-                .data(.systemGreen, 1)
-            ], 1)
-        ], 1
-    )
+    @StateObject var collageSelector: CollageSelectorViewModel = .init()    
     
     var body: some View {
         GeometryReader { proxy in
             VStack {
                 Spacer()
-                CollageView(size: proxy.size.toSquareSize, type: type)
+                if collageSelector.selectedCollage != nil {
+                    CollageView(size: proxy.size.toSquareSize, type: collageSelector.selectedCollage!)
                     .cornerRadius(12)
+                }
                 Spacer()
             }
         }
