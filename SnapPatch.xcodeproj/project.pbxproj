@@ -7,6 +7,11 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F3A6D602A10A5020068EFE7 /* ImagesSelector.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3A6D5F2A10A5020068EFE7 /* ImagesSelector.swift */; };
+		3F3A6D622A10A8C10068EFE7 /* ImageSelectorViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3A6D612A10A8C10068EFE7 /* ImageSelectorViewModel.swift */; };
+		3F3A6D642A1146600068EFE7 /* CollageImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F3A6D632A1146600068EFE7 /* CollageImageView.swift */; };
+		3F75DAAB2A270B4A00C8C9D3 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3F75DAAA2A270B4A00C8C9D3 /* ImagePicker.swift */; };
+		3FFC7A4A2A34842E0064CD24 /* CollageRatioPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3FFC7A492A34842E0064CD24 /* CollageRatioPicker.swift */; };
 		D5BD14FB29F3DC4E003F52D8 /* SnapPatchApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = D5BD14FA29F3DC4E003F52D8 /* SnapPatchApp.swift */; };
 		D5BD14FF29F3DC51003F52D8 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BD14FE29F3DC51003F52D8 /* Assets.xcassets */; };
 		D5BD150229F3DC51003F52D8 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D5BD150129F3DC51003F52D8 /* Preview Assets.xcassets */; };
@@ -41,6 +46,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		3F3A6D5F2A10A5020068EFE7 /* ImagesSelector.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesSelector.swift; sourceTree = "<group>"; };
+		3F3A6D612A10A8C10068EFE7 /* ImageSelectorViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageSelectorViewModel.swift; sourceTree = "<group>"; };
+		3F3A6D632A1146600068EFE7 /* CollageImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageImageView.swift; sourceTree = "<group>"; };
+		3F75DAAA2A270B4A00C8C9D3 /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		3F75DAAC2A271AD800C8C9D3 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		3FFC7A492A34842E0064CD24 /* CollageRatioPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollageRatioPicker.swift; sourceTree = "<group>"; };
 		D5BD14F729F3DC4E003F52D8 /* SnapPatch.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = SnapPatch.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D5BD14FA29F3DC4E003F52D8 /* SnapPatchApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SnapPatchApp.swift; sourceTree = "<group>"; };
 		D5BD14FE29F3DC51003F52D8 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -85,6 +96,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		3F75DAA92A270B3600C8C9D3 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				3F75DAAA2A270B4A00C8C9D3 /* ImagePicker.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		D5BD14EE29F3DC4E003F52D8 = {
 			isa = PBXGroup;
 			children = (
@@ -108,6 +127,8 @@
 		D5BD14F929F3DC4E003F52D8 /* SnapPatch */ = {
 			isa = PBXGroup;
 			children = (
+				3F75DAAC2A271AD800C8C9D3 /* Info.plist */,
+				3F75DAA92A270B3600C8C9D3 /* Services */,
 				D5BD153329F3F5FC003F52D8 /* ViewModels */,
 				D5BD152E29F3E71B003F52D8 /* Helpers */,
 				D5BD152529F3DD53003F52D8 /* Views */,
@@ -157,8 +178,11 @@
 			children = (
 				D5BD152629F3E076003F52D8 /* CollageScreen.swift */,
 				D5BD152829F3E0DA003F52D8 /* CollageMainView.swift */,
+				3FFC7A492A34842E0064CD24 /* CollageRatioPicker.swift */,
 				D5BD152C29F3E4F1003F52D8 /* CollageView.swift */,
+				3F3A6D632A1146600068EFE7 /* CollageImageView.swift */,
 				D5BD153629F3F9CA003F52D8 /* CollageListView.swift */,
+				3F3A6D5F2A10A5020068EFE7 /* ImagesSelector.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -176,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				D5BD153429F3F61A003F52D8 /* CollageSelectorViewModel.swift */,
+				3F3A6D612A10A8C10068EFE7 /* ImageSelectorViewModel.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -310,10 +335,15 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F75DAAB2A270B4A00C8C9D3 /* ImagePicker.swift in Sources */,
+				3FFC7A4A2A34842E0064CD24 /* CollageRatioPicker.swift in Sources */,
 				D5BD14FB29F3DC4E003F52D8 /* SnapPatchApp.swift in Sources */,
+				3F3A6D622A10A8C10068EFE7 /* ImageSelectorViewModel.swift in Sources */,
 				D5BD152B29F3E1DF003F52D8 /* CollageType.swift in Sources */,
+				3F3A6D602A10A5020068EFE7 /* ImagesSelector.swift in Sources */,
 				D5BD152729F3E076003F52D8 /* CollageScreen.swift in Sources */,
 				D5BD152D29F3E4F1003F52D8 /* CollageView.swift in Sources */,
+				3F3A6D642A1146600068EFE7 /* CollageImageView.swift in Sources */,
 				D5BD153029F3E72C003F52D8 /* Size.swift in Sources */,
 				D5BD153529F3F61A003F52D8 /* CollageSelectorViewModel.swift in Sources */,
 				D5BD152929F3E0DA003F52D8 /* CollageMainView.swift in Sources */,
@@ -480,8 +510,10 @@
 				DEVELOPMENT_TEAM = UK4W7VX5PA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SnapPatch/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SnapPatch;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Used to pick library photos and create collages.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -512,8 +544,10 @@
 				DEVELOPMENT_TEAM = UK4W7VX5PA;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = SnapPatch/Info.plist;
 				INFOPLIST_KEY_CFBundleDisplayName = SnapPatch;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.utilities";
+				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Used to pick library photos and create collages.";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
