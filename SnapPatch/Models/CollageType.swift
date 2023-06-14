@@ -5,13 +5,39 @@
 
 import UIKit
 
+
+enum ContainerType: Hashable, Identifiable {
+    
+    var id: Self { self }
+    
+    case empty(UIColor)
+    case image(UIImage)
+    
+    var color: UIColor? {
+        switch self {
+        case .empty(let uIColor): return uIColor
+        default: return nil
+        }
+    }
+}
+
+struct Container: Identifiable, Hashable {
+    var type: ContainerType
+    var id = UUID.init().uuidString
+}
+
+struct ViewContainer: Identifiable, Hashable {
+    var type: [CollageType]
+    var id = UUID.init().uuidString
+}
+
 enum CollageType: Hashable, Identifiable {
     
     var id: Self { self }
     
-    case row([CollageType], CGFloat)
-    case column([CollageType], CGFloat)
-    case data(UIColor, CGFloat)
+    case row(ViewContainer, CGFloat)
+    case column(ViewContainer, CGFloat)
+    case data(Container, CGFloat)
     
     enum Base: String {
         case row, column, data
@@ -35,9 +61,9 @@ extension CollageType {
     var content: [CollageType] {
         switch self {
         case .row(let array, _):
-            return array
+            return array.type
         case .column(let array, _):
-            return array
+            return array.type
         case .data(_, _):
             return []
         }
@@ -46,6 +72,15 @@ extension CollageType {
     var isRow: Bool {
         switch self {
         case .row(_, _):
+            return true;
+        default:
+            return false;
+        }
+    }
+    
+    var isData: Bool {
+        switch self {
+        case .data(_, _):
             return true;
         default:
             return false;
@@ -61,49 +96,29 @@ extension CollageType {
         return resut
     }
  
-    func viewTypeToDict(_ viewType: CollageType) -> [String: Any] {
-        switch viewType {
-        case .row(let subviews, let d):
-            let subviewDicts = subviews.map { viewTypeToDict($0) }
-            return ["type": "row", "subviews": subviewDicts, "d": d]
-            
-        case .column(let subviews, let d):
-            let subviewDicts = subviews.map { viewTypeToDict($0) }
-            return ["type": "column", "subviews": subviewDicts, "d": d]
-            
-        case .data(_, let d):
-            return ["type": "data", "d": d]
-        }
-    }
-    
-    static func dictToViewType(_ dict: [String: Any]) -> CollageType? {
-        guard let typeString = dict["type"] as? String,
-              let base = CollageType.Base(rawValue: typeString) else {
-            return nil
-        }
-        
-        switch base {
-        case .row:
-            guard let subviewsDicts = dict["subviews"] as? [[String: Any]], let spacing = dict["d"] as? CGFloat else { return nil }
-            let subviews = subviewsDicts.compactMap { dictToViewType($0) }
-            return .row(subviews, spacing)
-            
-        case .column:
-            guard let subviewsDicts = dict["subviews"] as? [[String: Any]], let spacing = dict["d"] as? CGFloat else { return nil }
-            let subviews = subviewsDicts.compactMap { dictToViewType($0) }
-            return .column(subviews, spacing)
-            
-        case .data:
-            guard let size = dict["d"] as? CGFloat else { return nil }
-            return .data(.clear, size)
-        }
-    }
-    
     var stringy: String {
         switch self {
         case .row(_, _): return "Row"
         case .column(_, _): return "Column"
         case .data(_, _): return "Data"
+        }
+    }
+    
+    
+    func getColorForContainer(_ id: String) -> UIColor? {
+        switch self {
+            
+        case .row(let array, _):
+            return array.type.compactMap { $0.getColorForContainer(id) }.first
+            
+        case .column(let array, _):
+            return array.type.compactMap { $0.getColorForContainer(id) }.first
+            
+        case .data(let container, _):
+            if container.id == id {
+                return container.type.color
+            } else { return nil }
+            
         }
     }
     
@@ -114,35 +129,132 @@ extension CollageType {
     
     static let collages: [CollageType] = [
     
-        .column([.data(.systemIndigo, 1), .data(.systemGreen, 1)], 1),
-        .row([.data(.systemPink, 1), .data(.systemTeal, 1)], 1),
-    
-        .row([
-            .column([ .data(.systemOrange, 1), .data(.systemGray2, 1) ], 1),
-            .data(.systemBrown, 1)
-        ], 1),
-    
-        .row([
-            .data(.systemYellow, 1),
-            .column([ .data(.systemGreen, 1), .data(.systemIndigo, 1) ], 1),
-        ], 1),
-    
-        .column([
-            .row([
-                .data(.systemRed, 1),
-                .data(.systemTeal, 1)
-            ], 1),
-            .data(.systemGreen, 1)
-        ], 1),
-    
-        .column([
-            .data(.systemPurple, 1),
-            .row([
-                .data(.systemMint, 1),
-                .data(.systemRed, 1)
-            ], 1),
-        ], 1),
+        .column(.init(type: [
+            .data(.init(type: .empty(.systemRed)), 1),
+            .data(.init(type: .empty(.systemIndigo)), 1),
+        ]), 1),
         
+        .row(.init(type: [
+            .data(.init(type: .empty(.systemPink)), 1),
+            .data(.init(type: .empty(.systemTeal)), 1),
+        ]), 1),
+        
+        .row(.init(type: [
+            .data(.init(type: .empty(.systemRed)), 1),
+            .data(.init(type: .empty(.systemBlue)), 1),
+            .data(.init(type: .empty(.systemGray)), 1)
+        ]), 1),
+
+//        .row(.init(type: [
+//            .data(.init(type: .empty(.systemYellow)), 1),
+//            .data(.init(type: .empty(.systemBlue)), 1),
+//            .data(.init(type: .empty(.systemPurple)), 1),
+//            .data(.init(type: .empty(.systemMint)), 1)
+//        ]), 1),
+//
+//        .row(.init(type: [
+//            .data(.init(type: .empty(.systemYellow)), 1),
+//            .data(.init(type: .empty(.systemRed)), 1),
+//            .data(.init(type: .empty(.systemPurple)), 1),
+//            .data(.init(type: .empty(.systemMint)), 1),
+//            .data(.init(type: .empty(.systemBrown)), 1)
+//        ]), 1),
+//
+        .row(.init(type: [
+            .column(.init(type: [ .data(.init(type: .empty(.systemOrange)), 1), .data(.init(type: .empty(.systemGray2)), 1) ]), 1),
+            .data(.init(type: .empty(.systemBrown)), 1)
+        ]), 1),
+        
+        .row(.init(type: [
+            .data(.init(type: .empty(.systemYellow)), 1),
+            .column(.init(type: [ .data(.init(type: .empty(.systemRed)), 1), .data(.init(type: .empty(.systemBrown)), 1) ]), 1),
+        ]), 1),
+        
+        .column(.init(type: [
+            .row(.init(type: [ .data(.init(type: .empty(.systemOrange)), 1), .data(.init(type: .empty(.systemGray2)), 1) ]), 1),
+            .data(.init(type: .empty(.systemBrown)), 1)
+        ]), 1),
+        
+        .column(.init(type: [
+            .data(.init(type: .empty(.systemPink)), 1),
+            .row(.init(type: [ .data(.init(type: .empty(.systemRed)), 1), .data(.init(type: .empty(.systemIndigo)), 1) ]), 1),
+        ]), 1),
+        
+        .column(.init(type: [
+            .row(.init(type: [ .data(.init(type: .empty(.systemPink)), 2), .data(.init(type: .empty(.systemPurple)), 1) ]), 1),
+            .row(.init(type: [ .data(.init(type: .empty(.systemRed)), 1), .data(.init(type: .empty(.systemIndigo)), 2) ]), 1),
+        ]), 1),
+        
+        .column(.init(type: [
+            .data(.init(type: .empty(.systemIndigo)), 1),
+            .data(.init(type: .empty(.systemPink)), 1),
+            .data(.init(type: .empty(.systemTeal)), 1)
+        ]), 1),
+
+        .row(.init(type: [
+            .column(.init(type: [ .data(.init(type: .empty(.systemPink)), 1), .data(.init(type: .empty(.systemPurple)), 2) ]), 1),
+            .column(.init(type: [ .data(.init(type: .empty(.systemRed)), 2), .data(.init(type: .empty(.systemIndigo)), 1) ]), 1),
+        ]), 1),
+        
+//        .column(.init(type: [
+//            .data(.init(type: .empty(.systemIndigo)), 1),
+//            .data(.init(type: .empty(.systemGreen)), 1),
+//            .data(.init(type: .empty(.systemPink)), 1),
+//            .data(.init(type: .empty(.systemTeal)), 1)
+//        ]), 1),
+        
+//        .row(.init(type: [
+//            .data(.init(type: .empty(.systemIndigo)), 1),
+//            .data(.init(type: .empty(.systemGreen)), 1),
+//            .data(.init(type: .empty(.systemPink)), 1),
+//            .data(.init(type: .empty(.systemTeal)), 1)
+//        ]), 1),
+        
+            .row(.init(type: [
+                .column(.init(type: [
+                    .row(.init(type: [
+                        .column(.init(type: [
+                            .data(.init(type: .empty(.systemRed)), 1),
+                            .data(.init(type: .empty(.systemCyan)), 1)
+                        ]), 1),
+                        .data(.init(type: .empty(.green)), 1)
+                    ]), 1),
+                    .data(.init(type: .empty(.magenta)), 1),
+                    .row(.init(type: [
+                        .column(.init(type: [
+                            .data(.init(type: .empty(.systemOrange)), 1),
+                            .data(.init(type: .empty(.systemTeal)), 1)
+                        ]), 1),
+                        .data(.init(type: .empty(.systemBlue)), 1)
+                    ]), 1),
+                ]), 1),
+                .data(.init(type: .empty(.systemMint)), 1),
+            ]), 1),
+
+        .row(.init(type: [
+            .column(.init(type: [
+                .data(.init(type: .empty(.systemRed)), 1),
+                .row(.init(type: [
+                    .data(.init(type: .empty(.systemBlue)), 1),
+                    .data(.init(type: .empty(.systemIndigo)), 1)
+                ]), 1),
+                .data(.init(type: .empty(.systemMint)), 1),
+            ]), 1),
+            .column(.init(type: [
+                .data(.init(type: .empty(.systemPink)), 1),
+                .data(.init(type: .empty(.systemGray)), 1),
+            ]), 1),
+            .column(.init(type: [
+                .data(.init(type: .empty(.systemYellow)), 1),
+                .row(.init(type: [
+                    .data(.init(type: .empty(.systemGreen)), 1),
+                    .data(.init(type: .empty(.brown)), 1)
+                ]), 1),
+                .data(.init(type: .empty(.systemTeal)), 1),
+            ]), 1),
+
+        ]), 1),
+
     ]
     
 }
