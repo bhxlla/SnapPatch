@@ -15,7 +15,7 @@ struct CollageListView: View {
                     Button {
                         selector.select(collage: collage)
                     } label: {
-                        CollageView(size: .init(width: 108, height: 108), type: collage, isMini: true)
+                        CollageView(size: .init(width: 90, height: 90), type: collage, isMini: true)
                             .foregroundColor(.primary)
                             .cornerRadius(8)
                             .allowsHitTesting(false)
