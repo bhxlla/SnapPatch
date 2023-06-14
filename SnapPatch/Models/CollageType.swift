@@ -5,6 +5,49 @@
 
 import UIKit
 
+enum CollageRatios: CaseIterable {
+    case oneone
+    case oneTwo
+    case oneThree
+    case twoThree
+    case threeFive
+    case fiveSeven
+    case twooOne
+    case threeOne
+    case fiveThree
+    case sevenFive
+    
+    var value: CGFloat {
+        switch self {
+            case .oneone: return 1
+            case .oneTwo: return 1/2
+            case .oneThree: return 1/3
+            case .twoThree: return 2/3
+            case .threeFive: return 3/5
+            case .fiveSeven: return 5/7
+            case .twooOne: return 2/1
+            case .threeOne: return 3/1
+            case .fiveThree: return 5/3
+            case .sevenFive: return 7/5
+        }
+    }
+    
+    var label: String {
+        switch self {
+            case .oneone: return "1 X 1"
+            case .oneTwo: return "1 X 2"
+            case .oneThree: return "1 X 3"
+            case .twoThree: return "2 X 3"
+            case .threeFive: return "3 X 5"
+            case .fiveSeven: return "5 X 7"
+            case .twooOne: return "2 X 1"
+            case .threeOne: return "3 X 1"
+            case .fiveThree: return "5 X 3"
+            case .sevenFive: return "7 X 5"
+        }
+    }
+    
+}
 
 enum ContainerType: Hashable, Identifiable {
     
